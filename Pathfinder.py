@@ -20,7 +20,7 @@ for link in soup.find_all('a'):
         url_download_list.append(link)
 
 for link in url_download_list:
-    newHolder = s.get(link.get('href'))
-    soup = soup_function(newHolder)
+    new_holder = s.get(link.get('href'))
+    soup = soup_function(new_holder)
     for inner_link in soup.find_all('a'):
         get_file(inner_link, file_link_tag, s)
