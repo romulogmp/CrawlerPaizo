@@ -9,7 +9,7 @@ def soup_function(value_holder):
     return inner_soup
 
 
-def format_booktitle(title_with_tag):
+def format_book_title(title_with_tag):
     title_with_tag = title_with_tag.find('b').text
     title_with_tag = title_with_tag.replace('<b>', '')
     title_with_tag = title_with_tag.replace('</b>', '')
@@ -22,11 +22,11 @@ def unzip_file(content):
     return unzip
 
 
-def extract_Path(zipbytes, folder_name):
+def set_unzip_folder(zipbytes, folder_name):
     zipbytes.extractall('{}'.format(folder_name))
 
 
-def requests_steps(login_path, user_credentials, account_files, current_session):
+def change_crawler_session(login_path, user_credentials, account_files, current_session):
     current_session.get(login_path)
     current_session.post(login_path, user_credentials)
     return current_session.get(account_files)
@@ -34,8 +34,8 @@ def requests_steps(login_path, user_credentials, account_files, current_session)
 
 def get_file(link_to_file, file_link, current_session):
     if link_to_file.get('href') is not None and file_link in link_to_file.get('href'):
-        book_name = format_booktitle(link_to_file)
+        book_name = format_book_title(link_to_file)
         response = current_session.get(link_to_file.get('href'))
         z = unzip_file(response.content)
-        extract_Path(z, book_name)
+        set_unzip_folder(z, book_name)
 

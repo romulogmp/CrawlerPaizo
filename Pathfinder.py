@@ -1,6 +1,6 @@
 import requests
 import urllib3
-from PathfinderFunctions import requests_steps, soup_function, get_file
+from PathfinderFunctions import change_crawler_session, soup_function, get_file
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -12,7 +12,7 @@ url_account_files = 'https://paizo.com/paizo/account/assets'
 data = {'e': 'E-MAIL', 'z': 'PASSWORD'}
 
 s = requests.Session()
-holder = requests_steps(url_login, data, url_account_files, s)
+holder = change_crawler_session(url_login, data, url_account_files, s)
 soup = soup_function(holder)
 
 for link in soup.find_all('a'):
