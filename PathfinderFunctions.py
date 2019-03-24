@@ -36,6 +36,6 @@ def get_file(link_to_file, file_link, current_session):
     if link_to_file.get('href') is not None and file_link in link_to_file.get('href'):
         book_name = format_book_title(link_to_file)
         response = current_session.get(link_to_file.get('href'))
-        z = unzip_file(response.content)
-        set_unzip_folder(z, book_name)
+        zip_bin = unzip_file(response.content)
+        set_unzip_folder(zip_bin, book_name)
 

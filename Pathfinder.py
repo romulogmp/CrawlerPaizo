@@ -11,8 +11,8 @@ url_login = 'https://paizo.com/cgi-bin/WebObjects/Store.woa/wa/DirectAction/sign
 url_account_files = 'https://paizo.com/paizo/account/assets'
 data = {'e': 'E-MAIL', 'z': 'PASSWORD'}
 
-s = requests.Session()
-holder = change_crawler_session(url_login, data, url_account_files, s)
+session = requests.Session()
+holder = change_crawler_session(url_login, data, url_account_files, session)
 soup = soup_function(holder)
 
 for link in soup.find_all('a'):
@@ -20,7 +20,7 @@ for link in soup.find_all('a'):
         url_download_list.append(link)
 
 for link in url_download_list:
-    new_holder = s.get(link.get('href'))
+    new_holder = session.get(link.get('href'))
     soup = soup_function(new_holder)
     for inner_link in soup.find_all('a'):
-        get_file(inner_link, file_link_tag, s)
+        get_file(inner_link, file_link_tag, session)
