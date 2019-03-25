@@ -21,6 +21,6 @@ for link in soup.find_all('a'):
 
 for link in url_download_list:
     new_holder = session.get(link.get('href'))
-    soup = soup_function(new_holder)
-    for inner_link in soup.find_all('a'):
+    soup_var = soup_function(new_holder)
+    for inner_link in soup_var.find_all('a'):
         get_file(inner_link, file_link_tag, session)
