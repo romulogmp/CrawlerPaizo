@@ -9,7 +9,7 @@ file_link_tag = '.zip'
 url_download_list = list()
 url_login = 'https://paizo.com/cgi-bin/WebObjects/Store.woa/wa/DirectAction/signIn?path=paizo'
 url_account_files = 'https://paizo.com/paizo/account/assets'
-data = {'e': 'E-MAIL', 'z': 'PASSWORD'}
+data = {'e': 'E-MAIL', 'zzz': 'PASSWORD'}
 
 session = requests.Session()
 holder = change_crawler_session(url_login, data, url_account_files, session)
